@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FM mesh viewer</title>
+  </head>
+  <body class="mv">
+    <div class="mv__view"></div>
+    <aside class="mv__panel">
+      <h1>FM mesh viewer</h1>
+      <nav class="mv__nav"><a href="./" aria-current="page">Compare</a> <a href="editor.html">Editor</a></nav>
+      <label>Left <select data-a></select></label>
+      <label>Right <select data-b></select></label>
+      <div class="mv__row" data-display>
+        <button data-mode="solid">Solid</button>
+        <button data-mode="wire" aria-pressed="true">Solid + wire</button>
+        <button data-mode="xray">X-ray</button>
+        <button data-mode="lines">Wire only</button>
+      </div>
+      <label class="mv__check"><input type="checkbox" data-points /> Vertices</label>
+      <label class="mv__check"><input type="checkbox" data-tris /> Triangulation</label>
+      <label class="mv__check"><input type="checkbox" data-flags checked /> Mark n-gons and open edges</label>
+      <label class="mv__check"><input type="checkbox" data-split checked /> Side by side</label>
+      <div class="mv__row">
+        <button data-view="front">Front</button>
+        <button data-view="side">Side</button>
+        <button data-view="top">Top</button>
+        <button data-view="iso">3/4</button>
+      </div>
+      <div class="mv__stats" data-stats></div>
+      <p class="mv__note">Drop an .obj anywhere to add it. Drag to orbit, right drag to pan, scroll to zoom.</p>
+      <p class="mv__legend"><i style="--c:#ff8a00"></i> n-gon (5+ sides) <i style="--c:#ff2d55"></i> open edge <i style="--c:#7b61ff"></i> non-manifold edge</p>
+    </aside>
+    <script type="module" src="/src/mesh-viewer.js"></script>
+  </body>
+</html>

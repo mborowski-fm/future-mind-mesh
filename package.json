@@ -1,0 +1,15 @@
+{
+  "name": "future-mind-mesh",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "lil-gui": "^0.19.2",
+    "three": "0.169.0"
+  }
+}
