@@ -211,7 +211,9 @@ function frameView(dir = new THREE.Vector3(-0.55, 0.32, 1)) {
   const c = b.getCenter(new THREE.Vector3());
   const r = b.getSize(new THREE.Vector3()).length() / 2;
   const vf = THREE.MathUtils.degToRad(camera.fov / 2);
-  const hf = Math.atan(Math.tan(vf) * camera.aspect);
+  // a window of no size yet (a hidden tab or pane) gives no aspect: frame as if square
+  const aspect = Number.isFinite(camera.aspect) && camera.aspect > 0 ? camera.aspect : 1;
+  const hf = Math.atan(Math.tan(vf) * aspect);
   const d = r / Math.sin(Math.min(vf, hf)) * 1.08;
   camera.position.copy(c).add(dir.normalize().multiplyScalar(d));
   controls.target.copy(c);
@@ -396,6 +398,7 @@ addEventListener('resize', () => {
   renderer.setSize(innerWidth, innerHeight);
   camera.aspect = innerWidth / innerHeight;
   camera.updateProjectionMatrix();
+  if (!Number.isFinite(camera.position.x)) frameView(); // loaded while it had no size
 });
 renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
 window.__fm = { S, scene, camera, mesh, rebuildShape, look, setImage };
